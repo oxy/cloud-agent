@@ -18,7 +18,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GOARCH: "amd64"
         GOOS: linux
-        EXTRA_FILES: "LICENSE"
+    - run: echo $GITHUB_REF
   release-linux-arm64:
     name: ARM64 Linux release
     runs-on: ubuntu-latest
@@ -32,4 +32,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GOARCH: arm64
         GOOS: linux
-        EXTRA_FILES: "LICENSE"
+    - run: echo $GITHUB_REF
