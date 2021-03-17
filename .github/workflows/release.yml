@@ -1,0 +1,35 @@
+on: 
+  release:
+    types:
+      - created
+
+name: Build Release
+jobs:
+  release-linux-amd64:
+    name: x86_64 Linux release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '^1.15' # The Go version to download (if necessary) and use.    - name: compile and release
+    - run: go build -v -o cloud-agent-amd64
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GOARCH: "amd64"
+        GOOS: linux
+        EXTRA_FILES: "LICENSE"
+  release-linux-arm64:
+    name: ARM64 Linux release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '^1.15' # The Go version to download (if necessary) and use.    - name: compile and release
+    - run: go build -v -o cloud-agent-arm64
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GOARCH: arm64
+        GOOS: linux
+        EXTRA_FILES: "LICENSE"
